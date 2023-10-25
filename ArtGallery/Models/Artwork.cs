@@ -8,7 +8,7 @@ namespace ArtGallery.Models
     [Required]
     public string Title { get; set; }
     [Required]
-    [StringLength(20)]
+    [StringLength(100)]
     public string Description { get; set; }
     [Required]
     public string Artist { get; set; }
