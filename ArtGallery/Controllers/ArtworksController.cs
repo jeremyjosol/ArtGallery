@@ -38,5 +38,19 @@ namespace ArtGallery.Controllers
 
       return await query.ToListAsync();
     }
+
+    // GET: api/Animals/5
+    [HttpGet("{id}")]
+    public async Task<ActionResult<Artwork>> GetArtwork(int id)
+    {
+      Artwork artwork = await _db.Artworks.FindAsync(id);
+
+      if (artwork == null)
+      {
+        return NotFound();
+      }
+      
+      return artwork;
+    }
   }
 }
