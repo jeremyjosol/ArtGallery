@@ -49,8 +49,51 @@ namespace ArtGallery.Controllers
       {
         return NotFound();
       }
-      
+
       return artwork;
+    }
+
+    [HttpPost]
+    public async Task<ActionResult<Artwork>> Post(Artwork artwork)
+    {
+      _db.Artworks.Add(artwork);
+      await _db.SaveChangesAsync();
+      return CreatedAtAction(nameof(GetArtwork), new { id = artwork.Id }, artwork);
+    }
+
+    // PUT: api/Animals/5
+    [HttpPut("{id}")]
+    public async Task<IActionResult> Put(int id, Artwork artwork)
+    {
+      if (id != artwork.Id)
+      {
+        return BadRequest();
+      }
+
+      _db.Artworks.Update(artwork);
+
+      try
+      {
+        await _db.SaveChangesAsync();
+      }
+      catch (DbUpdateConcurrencyException)
+      {
+        if (!ArtworkExists(id))
+        {
+          return NotFound();
+        }
+        else
+        {
+          throw;
+        }
+      }
+
+      return NoContent();
+    }
+
+    private bool ArtworkExists(int id)
+    {
+      return _db.Artworks.Any(e => e.Id == id);
     }
   }
 }
