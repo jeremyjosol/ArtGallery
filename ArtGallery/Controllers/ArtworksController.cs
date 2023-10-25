@@ -1,5 +1,7 @@
+using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Threading.Tasks;
 using ArtGallery.Models;
 
 namespace ArtGallery.Controllers
@@ -17,7 +19,7 @@ namespace ArtGallery.Controllers
 
     // GET api/artworks
     [HttpGet]
-    public async Task<List<Artwork>> Get(string title, string artist, int year)
+    public async Task<List<Artwork>> Get(string title, string artist, int year, int page = 1, int pageSize = 2)
     {
       IQueryable<Artwork> query = _db.Artworks.AsQueryable();
 
@@ -36,7 +38,14 @@ namespace ArtGallery.Controllers
         query = query.Where(entry => entry.Year >= year);
       }
 
-      return await query.ToListAsync();
+      int skip = (page - 1) * pageSize;
+
+      List<Artwork> result = await query
+        .Skip(skip)
+        .Take(pageSize)
+        .ToListAsync();
+
+      return result;
     }
 
     // GET: api/Animals/5
