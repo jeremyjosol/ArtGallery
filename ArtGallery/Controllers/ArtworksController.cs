@@ -95,5 +95,21 @@ namespace ArtGallery.Controllers
     {
       return _db.Artworks.Any(e => e.Id == id);
     }
+
+     // DELETE: api/Animals/5
+    [HttpDelete("{id}")]
+    public async Task<IActionResult> DeleteArtwork(int id)
+    {
+      Artwork artwork = await _db.Artworks.FindAsync(id);
+      if (artwork == null)
+      {
+        return NotFound();
+      }
+
+      _db.Artworks.Remove(artwork);
+      await _db.SaveChangesAsync();
+
+      return NoContent();
+    }
   }
 }
