@@ -79,8 +79,24 @@ namespace ArtGallery.Controllers
         claims: authClaims,
         signingCredentials: new SigningCredentials(authSigningKey, SecurityAlgorithms.HmacSha256)
         );
-        
+
       return new JwtSecurityTokenHandler().WriteToken(token);
+    }
+
+    [HttpGet("listclaims")]
+    public IActionResult ListClaims()
+    {
+      string header = HttpContext.Request.Headers["Authorization"];
+      List<Claim> claims = GetClaims(header);
+      return Ok(claims);
+    }
+
+    private List<Claim> GetClaims(string authHeader)
+    {
+      string token = authHeader.Replace("Bearer", "");
+      JwtSecurityTokenHandler tokenHandler = new JwtSecurityTokenHandler();
+      JwtSecurityToken securityToken = (JwtSecurityToken)tokenHandler.ReadToken(token);
+      return (List<Claim>)securityToken.Claims;
     }
   }
 }

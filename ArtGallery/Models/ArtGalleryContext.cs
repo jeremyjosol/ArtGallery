@@ -20,6 +20,9 @@ namespace ArtGallery.Models
           new Artwork { Id = 4, Title = "Tilted Arc", Description = "Large-scale steel sculpture", Artist = "Richard Serra", Year = 1981 },
           new Artwork { Id = 5, Title = "No. 14", Description = "Abstract expressionist painting", Artist = "Mark Rothko", Year = 1960 }
         );
+         
+         base.OnModelCreating(builder);
+          // builder.Ignore<IdentityUserLogin<string>>();
     }
   }
 }
