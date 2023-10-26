@@ -68,6 +68,14 @@ namespace ArtGallery.Controllers
       return BadRequest(new { status = "error", message = "Unable to sign in." });
     }
 
+    [HttpGet("listclaims")]
+    public IActionResult ListClaims()
+    {
+      string header = HttpContext.Request.Headers["Authorization"];
+      List<Claim> claims = GetClaims(header);
+      return Ok(claims);
+    }
+
     private string CreateToken(List<Claim> authClaims)
     {
       var authSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["JWT:Secret"]));
@@ -83,13 +91,6 @@ namespace ArtGallery.Controllers
       return new JwtSecurityTokenHandler().WriteToken(token);
     }
 
-    [HttpGet("listclaims")]
-    public IActionResult ListClaims()
-    {
-      string header = HttpContext.Request.Headers["Authorization"];
-      List<Claim> claims = GetClaims(header);
-      return Ok(claims);
-    }
 
     private List<Claim> GetClaims(string authHeader)
     {

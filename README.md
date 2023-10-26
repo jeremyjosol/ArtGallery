@@ -6,12 +6,7 @@
 * _C#_
 * _.NET_
 * _CSHTML_
-* _CSS_
 * _JSON_
-* _Figma_
-* _Bootstrap_
-* _Google Fonts API_
-* _Material Symbols_
 * _MySQL Workbench_
 * _Swagger_
 * _Postman_
@@ -78,12 +73,70 @@ Explore the API endpoints in Postman or a browser.
 ### Using Swagger Documentation 
 To explore Art Gallery with NSwag, launch the project using `dotnet run` with the Terminal or Powershell, and input the following URL into your browser: `http://localhost:5000/swagger`
 
-### Pagination
-Art Gallery returns a default of 2 results per page at a time. To modify this, use the query parameters `page` and `pageSize` and replace `{customize}` with integer values where `pageSize` is the amount of objects to be viewed.
+## Generating a JSON Web Token
+In order to be authorized to use the `POST`, `PUT`, and `DELETE` functionality of the API, you are required to authenticate yourself through Postman with a JSON Web Token (JWT).
 
+> ### Registration
+In Postman, create a `POST` request using the following URL `http://localhost:5000/accounts/register`
+
+Add the following query to the request as raw data in the Body tab:
+```json
+{
+  "email": "email@test.com",
+  "userName": "testUser",
+  "password": "Test123!"
+}
 ```
-http://localhost:5000/api/artworks?page={customize}&pageSize={customize}
+
+*If you would like to customize your password, please ensure that your password has:
+
+*1 uppercase letter, 1 lowercase letter, 1 number, 1 special character, and is at least 6 characters long*.
+
+> ### Expected JSON Response
+```json
+{
+  "status": "success",
+  "message": "User has been successfully created"
+}
 ```
+
+<html>
+<img src="ArtGallery/wwwroot/img/Postman.jpg">
+
+> ### Authentication
+With your newly created account, create another `POST` request, this time using the following URL `http://localhost:5000/accounts/signin`
+
+Add the following query to the request as raw data in the Body tab:
+```json
+{
+  "email": "email@test.com",
+  "password": "Test123!"
+}
+```
+> ### Expected JSON Response
+```json
+{
+  "status": "success",
+  "message": "email@test.com signed in",
+  "token": "{yourGeneratedToken}"
+}
+```
+
+<html>
+<img src="ArtGallery/wwwroot/img/Postman2.jpg">
+
+> ### Using the JSON Web Token
+
+* Copy `{yourGeneratedToken}` from the response Body 
+* Click on the 'Authorization' tab 
+* Adjacent to 'Type' will be a drowndown menu, click on the menu and select 'Bearer Token'
+* Within the Body, paste `{yourGeneratedToken}` in the empty form field adjacent to 'Token'
+
+    > You now have full access to the Art Gallery. 
+
+Test it out by sending a `GET` request to the following endpoint `localhost:5000/api/artworks/{id}`
+
+Where `{id}` will be replaced by a valid integer value.
 
 ### Available Endpoints
 
@@ -107,3 +160,10 @@ http://localhost:5000/api/artworks?page={customize}&pageSize={customize}
 | description | String      | not required | Returns artwork with a matching description value |
 | artist      | String      | not required | Returns artwork with a matching artist name |
 | year        | Int         | not required | Returns artwork with a matching year |
+
+### Pagination
+Art Gallery returns a default of 2 results per page at a time. To modify this, use the query parameters `page` and `pageSize` and replace `{customize}` with integer values where `pageSize` is the amount of objects to be viewed.
+
+```
+http://localhost:5000/api/artworks?page={customize}&pageSize={customize}
+```
