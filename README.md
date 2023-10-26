@@ -97,9 +97,9 @@ http://localhost:5000/api/artworks?page={customize}&pageSize={customize}
 
 `DELETE` http://localhost:5000/api/artworks/{id}
 
-**Note**: `{id}` is a variable and it should be replaced with the id number of the artwork you want to GET, PUT, or DELETE.
+**Note**: `{id}` is a variable and it should be replaced with the id number of the artwork you want to `GET`, `PUT`, or `DELETE`.
 
-#### Optional Query String Parameters for GET Request
+#### Optional Query String Parameters for `GET` Request
 
 | Parameter   | Type        |  Required    | Description |
 | ----------- | ----------- | -----------  | ----------- |
