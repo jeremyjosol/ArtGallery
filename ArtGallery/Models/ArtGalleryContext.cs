@@ -1,8 +1,10 @@
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace ArtGallery.Models
 {
-  public class ArtGalleryContext : DbContext
+  public class ArtGalleryContext : IdentityDbContext<ApplicationUser>
   {
     public DbSet<Artwork> Artworks { get; set; }
 

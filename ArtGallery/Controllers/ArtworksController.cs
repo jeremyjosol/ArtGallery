@@ -3,11 +3,15 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Threading.Tasks;
 using ArtGallery.Models;
+using System.Security.Claims;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Authorization;
 
 namespace ArtGallery.Controllers
 {
   [Route("api/[controller]")]
   [ApiController]
+  [Authorize]
   public class ArtworksController : ControllerBase
   {
     private readonly ArtGalleryContext _db;
