@@ -136,7 +136,8 @@ Add the following query to the request as raw data in the Body tab:
 
 Test it out by sending a `GET` request to the following endpoint `localhost:5000/api/artworks/{id}`
 
-Where `{id}` will be replaced by a valid integer value.
+<html>
+<img src="ArtGallery/wwwroot/img/Postman3.png">
 
 ### Available Endpoints
 
