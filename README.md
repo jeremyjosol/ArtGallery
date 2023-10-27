@@ -11,6 +11,8 @@
 * _Swagger_
 * _Postman_
 
+------------------------------
+
 ## Prerequisites
 
 * _MySQL_
@@ -80,6 +82,8 @@ To explore Art Gallery with NSwag, launch the project using `dotnet run` with th
 ## Generating a JSON Web Token
 In order to be authorized to use the `POST`, `PUT`, and `DELETE` functionality of the API, you are required to authenticate yourself through Postman with a JSON Web Token (JWT).
 
+------------------------------
+
 > ### Registration
 In Postman, create a `POST` request using the following URL `http://localhost:5000/accounts/register`
 
@@ -93,8 +97,6 @@ Add the following query to the request as raw data in the Body tab:
 ```
 
 *If you would like to customize your password, please ensure that your password has: *1 uppercase letter, 1 lowercase letter, 1 number, 1 special character, and is at least 6 characters long*.
-
-------------------------------
 
 > ### Expected JSON Response
 ```json
