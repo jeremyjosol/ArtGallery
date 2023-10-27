@@ -24,6 +24,8 @@
 #### Install Postman
 (Optional) [Download and install Postman](https://www.postman.com/downloads/).
 
+------------------------------
+
 ## Application Setup
 
 1. Clone this repo.
@@ -67,6 +69,8 @@
 8. To optionally further build out this project in development mode, start the project with `dotnet watch run` in the production directory "ArtGallery".
 9. Use your program of choice to make API calls. In your API calls, use the domain _http://localhost:5000_. Keep reading to learn about all of the available endpoints.
 
+------------------------------
+
 ## 🛰️ API Documentation
 Explore the API endpoints in Postman or a browser.
 
@@ -88,9 +92,9 @@ Add the following query to the request as raw data in the Body tab:
 }
 ```
 
-*If you would like to customize your password, please ensure that your password has:
+*If you would like to customize your password, please ensure that your password has: *1 uppercase letter, 1 lowercase letter, 1 number, 1 special character, and is at least 6 characters long*.
 
-*1 uppercase letter, 1 lowercase letter, 1 number, 1 special character, and is at least 6 characters long*.
+------------------------------
 
 > ### Expected JSON Response
 ```json
@@ -102,6 +106,8 @@ Add the following query to the request as raw data in the Body tab:
 
 <html>
 <img src="ArtGallery/wwwroot/img/Postman.jpg">
+
+------------------------------
 
 > ### Authentication
 With your newly created account, create another `POST` request, this time using the following URL `http://localhost:5000/accounts/signin`
@@ -125,6 +131,8 @@ Add the following query to the request as raw data in the Body tab:
 <html>
 <img src="ArtGallery/wwwroot/img/Postman2.jpg">
 
+------------------------------
+
 > ### Using the JSON Web Token
 
 * Copy `{yourGeneratedToken}` from the response Body 
@@ -138,6 +146,8 @@ Test it out by sending a `GET` request to the following endpoint `localhost:5000
 
 <html>
 <img src="ArtGallery/wwwroot/img/Postman3.png">
+
+------------------------------
 
 ### Available Endpoints
 
@@ -153,6 +163,8 @@ Test it out by sending a `GET` request to the following endpoint `localhost:5000
 
 **Note**: `{id}` is a variable and it should be replaced with the id number of the artwork you want to `GET`, `PUT`, or `DELETE`.
 
+------------------------------
+
 #### Optional Query String Parameters for `GET` Request
 
 | Parameter   | Type        |  Required    | Description |
@@ -162,9 +174,41 @@ Test it out by sending a `GET` request to the following endpoint `localhost:5000
 | artist      | String      | not required | Returns artwork with a matching artist name |
 | year        | Int         | not required | Returns artwork with a matching year |
 
+------------------------------
+
 ### Pagination
 Art Gallery returns a default of 2 results per page at a time. To modify this, use the query parameters `page` and `pageSize` and replace `{customize}` with integer values where `pageSize` is the amount of objects to be viewed.
 
 ```
 http://localhost:5000/api/artworks?page={customize}&pageSize={customize}
+```
+
+------------------------------
+
+### ⚖️ License
+
+This project is licensed under the [MIT License](https://opensource.org/licenses/MIT). Copyright (C) 2023 Jeremy Josol. All Rights Reserved.
+
+```
+MIT License
+
+Copyright (c) 2023 Jeremy Josol.
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
 ```
